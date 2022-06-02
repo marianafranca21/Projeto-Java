@@ -1,60 +1,44 @@
-package modelo;
-public class Usuario {
-
-    Long id;
-    String nome;
-    String cpf;
-    String idade;
-    String altura;
-    String peso;
-    String telefone;
-    String email;
+package dao;
+        import factory.ConnectionFactory;
+        import modelo.Usuario;
+        import java.sql. *;
+        import java.sql.PreparedStatement;
 
 
-    public String getCpf() {
-        return cpf;
+    public class UsuarioDAO {
+
+        private Connection connection;
+        Long id;
+        String nome;
+        String cpf;
+        String idade;
+        String altura;
+        String peso;
+        String telefone;
+        String email;
+
+        public UsuarioDAO() {
+            this.connection = new ConnectionFactory().getConnection();
+        }
+
+        public void adiciona(Usuario usuario) {
+            String sql = "INSERT INTO usuario(nome,cpf,idade,altura,peso,telefone,email) VALUES(?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setString(1, usuario.getNome());
+                stmt.setString(2, usuario.getCpf());
+                stmt.setString(3, usuario.getIdade());
+                stmt.setString(4, usuario.getAltura());
+                stmt.setString(5, usuario.getPeso());
+                stmt.setString(6, usuario.getTelefone());
+                stmt.setString(7, usuario.getEmail());
+                stmt.execute();
+                stmt.close();
+            } catch (SQLException u) {
+                throw new RuntimeException(u);
+            }
+
+        }
+
     }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getIdade() {
-        return idade;
-    }
-
-    public void setIdade(String idade) {
-        this.idade = idade;
-    }
-
-    public String getAltura() {
-        return altura;
-    }
-
-    public void setAltura(String altura) {
-        this.altura = altura;
-    }
-
-    public String getPeso() {
-        return peso;
-    }
-
-    public void setPeso(String peso) {
-        this.peso = peso;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    
