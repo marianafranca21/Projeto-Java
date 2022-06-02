@@ -42,3 +42,111 @@ package dao;
 
     }
     
+    package modelo;
+public class Usuario {
+
+    Long id;
+    String nome;
+    String cpf;
+    String idade;
+    String altura;
+    String peso;
+    String telefone;
+    String email;
+
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getIdade() {
+        return idade;
+    }
+
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
+
+    public String getAltura() {
+        return altura;
+    }
+
+    public void setAltura(String altura) {
+        this.altura = altura;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    Evento LIMPAR
+jTextField1.setText("");
+jTextField2.setText("");
+jTextField3.setText("");
+jTextField4.setText("");
+jTextField5.setText("");
+jTextField6.setText("");
+jTextField7.setText("");
+
+usuarios.setNome (jTextField1.getText());
+    usuarios.setCpf (jTextField2.getText());
+    usuarios.setIdade (jTextField3.getText());
+    usuarios.setAlturae (jTextField4.getText());
+    usuarios.setPeso (jTextField5.getText());
+    usuarios.setTelefone (jTextField6.getText());
+    usuarios.setEmail (jTextField7.getText());
+
+// fazendo a validação dos dados
+if ((jTextField1.getText ().isEmpty()) 
+        (jTextField2.getText().isEmpty()) 
+        (jTextField3.getText().isEmpty()) 
+        (jTextField4.getText().isEmpty())
+(jTextField5.getText().isEmpty())
+(jTextField6.getText().isEmpty())
+(jTextField7.getText().isEmpty())){
+   JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
+    }
+
+    
+        else {
+
+    // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
+    UsuarioDAO dao = new UsuarioDAO();
+        dao.adiciona(usuarios);
+        JOptionPane.showMessageDialog(null, "Usuário " + jTextField1.getText() + " inserido com sucesso! ");
+    }
+
+// apaga os dados preenchidos nos campos de texto
+    jTextField1.setText ("");
+    jTextField2.setText ("");
+    jTextField3.setText ("");
+   
+ jTextField4.setText ("");
+ jTextField5.setText ("");
+ jTextField6.setText ("");
+ jTextField7.setText ("");
+    
